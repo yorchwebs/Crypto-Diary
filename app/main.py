@@ -117,4 +117,3 @@ def index():
 
 # Indicamos que en éste modulo debe iniciar la aplicación.
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
