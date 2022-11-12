@@ -63,7 +63,7 @@ html {
 }
 
 .hero-title {
-    margin-right: 60px;
+    margin-right: 80px;
 }
 
 .hero-title h1 {
@@ -83,6 +83,15 @@ html {
 }
 
 /* Otros */
+
+.actualizar {
+    background-color: #000000;
+    color: #ffeb3b;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 40px;
+}
 
 .container {
     display: flex;

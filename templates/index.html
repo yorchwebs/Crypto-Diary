@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cef0e935a9.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <title>Jorge Garcia Dev - Crypto Diary</title>
 </head>
 <body>
@@ -33,17 +35,16 @@
     <section class="hero">
         <div class="hero-title">
             <h1>Crypto <strong>Diary</strong></h1>
-            <p>Proyecto Desarrollado con Flask, HTML, CSS y JavaScript, <br>
+            <p>Proyecto Desarrollado con Flask, HTML, CSS y JQuery, <br>
             se conecta con CryptoCompare por medio de un API. <br>
-            Obtiene los precios de las 10 cripto-monedas <br>
-            más importantes.</p>
+            Obtiene los precios de 10 cripto-monedas. </p>
         </div>
     </section>
 
 <!-- Sección: Ciclo For (Monedas, Nombres y Precios) -->
 
     <section class="container">
-        <div class="content">
+        <div id="precios" class="content">
                 <ul>
                     <h3>Símbolo</h3>
                     <br>
@@ -64,7 +65,7 @@
                     <h3>Precio en USD</h3>
                     <br>
                     {% for dolar in dolares %}
-                    <div id="seccionRecargar" class="precio">
+                    <div class="precio">
                         <li>$</li>
                         <li> {{ dolar }}</li>
                     </div>
@@ -75,7 +76,7 @@
                     <h3>Precio en MXN</h3>
                     <br>
                     {% for peso in pesos %}
-                        <div id="seccionRecargar" class="precio">
+                        <div class="precio">
                             <li>$</li>
                             <li>{{ peso }}</li>
                         </div>
@@ -128,6 +129,15 @@
             </div>
         </div>
     </footer>
-    <script src="https://kit.fontawesome.com/cef0e935a9.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+        function actualizar(){$('#precios').load(document.URL +  '  #precios');}
+
+        //Función para actualizar cada 5 segundos(5000 milisegundos)
+        setInterval("actualizar()",1000);
+
+    </script>
+
 </body>
 </html>
