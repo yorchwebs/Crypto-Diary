@@ -6,9 +6,6 @@ import cryptocompare
 # Iniciamos la Aplicación.
 app = Flask(__name__)
 
-# API Key - CryptoCompare.
-CRYPTO_COMPARE_KEY='24b9a8a055a75fe131b4b353d5d590e46f021a69761e428c5ec8b315f2e2a3ca'
-
 # Llave para accesar a los datos de CryptoCompare.
 CryptoCompare = 'CRYPTO_COMPARE_KEY'
 
