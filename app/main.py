@@ -6,6 +6,9 @@ import cryptocompare
 # Iniciamos la Aplicación.
 app = Flask(__name__)
 
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
+
 # Llave para accesar a los datos de CryptoCompare.
 CryptoCompare = 'CRYPTO_COMPARE_KEY'
 
@@ -117,4 +120,4 @@ def index():
 
 # Indicamos que en éste modulo debe iniciar la aplicación.
 if __name__ == '__main__':
-    app.run(port=5000, deploy=True)
+    app.run(ALLOWED_HOSTS, DEBUG)
