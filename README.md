@@ -1,4 +1,4 @@
-![Banner Crypto]([/app/static/Portada-CryptoDiary.png](https://res.cloudinary.com/duckwaaai/image/upload/f_auto,q_auto/v1/Crypto-Diary/llmk18zoql5jqmuc4pzo))
+![Banner Crypto]([/app/static/Portada-CryptoDiary.png](https://res.cloudinary.com/duckwaaai/image/upload/f_auto,q_auto/v1/Crypto-Diary/llmk18zoql5jqmuc4pzo)
 
 # PROJECT - CRYPTO DIARY
 
