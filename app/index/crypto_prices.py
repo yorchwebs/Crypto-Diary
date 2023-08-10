@@ -1,7 +1,12 @@
+import time
 import cryptocompare
 
 from typing import List
 from app.index.utils.price_format import price_formatter
+
+from concurrent.futures import ThreadPoolExecutor
+
+start = time.time()
 
 
 class CryptoPrices:
@@ -43,9 +48,14 @@ class CryptoPrices:
         mxn_price_list: List[float] = []
 
         while True:
-            for coin in self.coins:
-                usd_price_list.append(getting_price(self.coins[coin]["USD"]))
-                mxn_price_list.append(getting_price(self.coins[coin]["MXN"]))
+            with ThreadPoolExecutor(max_workers=4) as executor:
+                for coin in self.coins:
+                    executor.submit(
+                        usd_price_list.append(getting_price(self.coins[coin]["USD"]))
+                    )
+                    executor.submit(
+                        mxn_price_list.append(getting_price(self.coins[coin]["MXN"]))
+                    )
 
             break
 
@@ -55,6 +65,9 @@ class CryptoPrices:
             "usd_price_list": usd_price_list,
             "mxn_price_list": mxn_price_list,
         }
+
+
+print(time.time() - start)
 
 
 @price_formatter
