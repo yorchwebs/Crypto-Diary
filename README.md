@@ -2,7 +2,7 @@
 
 # PROJECT - CRYPTO DIARY
 
-This is a Crypto Aplication develop with Flask, HTML, CSS & JQuery.
+This is a Crypto Aplication develop with Flask, HTML, CSS & JavaScript.
 Receives, processes, and displays the 10 coins data from CryptoCompare in Real-Time.
 
 ---
@@ -29,8 +29,8 @@ Receives, processes, and displays the 10 coins data from CryptoCompare in Real-T
 ---
 
 * **For running, run the command:**
-  * ```python main.py``` (Windows)
-  * ```python3 main.py``` (Mac OS, Linux)
+  * ```python maname.py runserver``` (Windows)
+  * ```python3 manage.py runserver``` (Mac OS, Linux)
 
 ---
 
