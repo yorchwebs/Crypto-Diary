@@ -10,17 +10,14 @@ start = time.time()
 
 
 class CryptoPrices:
-    def __init__(self):
+    def __init__(self, coins: dict = None, names: dict = None):
         self.coins = cryptocompare.get_price(
             ["BTC", "ETH", "LTC", "BCH", "XRP", "BSV", "EOS", "XLM", "ADA", "TRX"],
             ["USD", "MXN"],
         )
 
-    def get_name(self) -> dict:
-        return self.name
-
     def get_prices(self) -> dict:
-        coins_list: List[str] = [
+        symbol_list: List[str] = [
             "BTC",
             "ETH",
             "USDT",
@@ -60,7 +57,7 @@ class CryptoPrices:
             break
 
         return {
-            "coins_list": coins_list,
+            "symbol_list": symbol_list,
             "name_list": name_list,
             "usd_price_list": usd_price_list,
             "mxn_price_list": mxn_price_list,

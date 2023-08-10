@@ -12,7 +12,7 @@ index_bp = Blueprint(
 def index():
         return render_template(
             "index.html",
-            coins_list=CryptoPrices().get_prices()["coins_list"],
+            symbol_list=CryptoPrices().get_prices()["symbol_list"],
             name_list = CryptoPrices().get_prices()["name_list"],
             usd_price_list=CryptoPrices().get_prices()["usd_price_list"],
             mxn_price_list=CryptoPrices().get_prices()["mxn_price_list"],
