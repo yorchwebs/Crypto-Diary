@@ -24,8 +24,7 @@
                 <a class="nav-title" href="#">C|<strong>D</strong></a>
             </div>
             <div class="nav-right">
-                <a class="nav-menu" href="#">Inicio</a>
-                <a class="nav-menu" href="#">Registro</a>
+                <a class="nav-menu" href="/">Inicio</a>
             </div>
         </nav>
     </nav>
@@ -239,6 +238,27 @@
             </div>
         </div>
     </section>
+
+<!-- Sección: Newsletter -->
+
+<section class="form-container">
+    <div class="form-content">
+        <h2>Suscribete y recibe actualizaciones <br>
+            directo a tu correo.</h2>
+        <form class="form" action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.name(size=64, placeholder="Nombre") }}<br>
+            </div>
+            <div>
+                {{ form.email(size=64, placeholder="Email") }}<br>
+            </div>
+            <div class="register-form">
+                {{ form.submit(id="submit-button") }}
+            </div>
+        </form>
+    </div>
+</section>
 
 <!-- Sección: Ciclo For (Monedas, Nombres y Precios) -->
 
