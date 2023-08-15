@@ -1,6 +1,8 @@
 from flask import Flask
 
-# from db.database import database
+from app.index.models import Newsletter
+
+from app.db.database import database
 
 from app.index.views import index_bp
 
@@ -13,5 +15,6 @@ def create_app(config):
     app.config.from_object(config)
     # csrf.init_app(app)
     # app.register_error_handler(404, page_not_found)
-    # database.create_tables()
+    database.drop_tables([Newsletter])
+    database.create_tables([Newsletter])
     return app
