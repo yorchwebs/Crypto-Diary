@@ -1,9 +1,15 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
-
+from flask import flash
+from flask import url_for
+from flask import redirect
+from flask import Blueprint
+from flask import render_template
 
 from app.emails.models import Newsletter
+
 from app.index.forms import NewsletterForm
+
 from app.index.crypto_prices import CryptoPrice
+
 from app.emails.utils.pydantic_validator import NewsletterModel
 
 
