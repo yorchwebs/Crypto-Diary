@@ -264,44 +264,44 @@
 
     <section class="container">
         <div id="precios" class="content">
-                <ul>
-                    <h3>Símbolo</h3>
-                    <br>
-                    {% for symbol in symbol_list %}
-                    <li><strong>{{ symbol }}</strong></li>
-                    <br>
-                    {% endfor %}
-                </ul>
-                <ul>
-                    <h3>Nombre</h3>
-                    <br>
-                    {% for name in name_list %}
-                    <div class="name-container">
-                        <li>{{ name }}</li>
+            <ul>
+                <h3>Símbolo</h3>
+                <br>
+                {% for symbol in symbol_list %}
+                <li><strong>{{ symbol }}</strong></li>
+                <br>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h3>Nombre</h3>
+                <br>
+                {% for name in name_list %}
+                <div class="name-container">
+                    <li>{{ name }}</li>
+                </div>
+                <br>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h3>Precio en USD</h3>
+                <br>
+                {% for usd in usd_price_list %}
+                <div class="usd-price_container">
+                    <li>$ {{ usd }}</li>
+                </div>
+                <br>
+                {% endfor %}
+            </ul>
+            <ul>
+                <h3>Precio en MXN</h3>
+                <br>
+                {% for mxn in mxn_price_list %}
+                    <div class="mx-price-container">
+                        <li>$ {{ mxn }}</li>
                     </div>
-                    <br>
-                    {% endfor %}
-                </ul>
-                <ul>
-                    <h3>Precio en USD</h3>
-                    <br>
-                    {% for usd in usd_price_list %}
-                    <div class="usd-price_container">
-                        <li>$ {{ usd }}</li>
-                    </div>
-                    <br>
-                    {% endfor %}
-                </ul>
-                <ul>
-                    <h3>Precio en MXN</h3>
-                    <br>
-                    {% for mxn in mxn_price_list %}
-                        <div class="mx-price-container">
-                            <li>$ {{ mxn }}</li>
-                        </div>
-                    <br>
-                    {% endfor %}
-                </ul>
+                <br>
+                {% endfor %}
+            </ul>
         </div>
     </section>
 
