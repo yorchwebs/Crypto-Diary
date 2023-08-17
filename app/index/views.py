@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 
 
+from app.emails.models import Newsletter
 from app.index.forms import NewsletterForm
-from app.index.models import Newsletter
 from app.index.crypto_prices import CryptoPrice
-from app.index.utils.pydantic_validator import NewsletterModel
+from app.emails.utils.pydantic_validator import NewsletterModel
 
 
 index_bp = Blueprint(
@@ -34,8 +34,5 @@ def index():
     return render_template(
         "index.html",
         form=form,
-        symbol_list=crypto_prices["symbol_list"],
-        name_list=crypto_prices["name_list"],
-        usd_price_list=crypto_prices["usd_price_list"],
-        mxn_price_list=crypto_prices["mxn_price_list"],
+        **crypto_prices,
     )
