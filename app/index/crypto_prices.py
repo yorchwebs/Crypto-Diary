@@ -52,12 +52,15 @@ class CryptoPrice:
                     mxn_price_list.append(getting_price(self.coins[coin]["MXN"]))
                 )
 
-        return {
+        data_to_return = {
             "symbol_list": SYMBOL_LIST,
             "name_list": NAME_LIST,
             "usd_price_list": usd_price_list,
             "mxn_price_list": mxn_price_list,
         }
+
+        return data_to_return
+
 
 
 @price_formatter
