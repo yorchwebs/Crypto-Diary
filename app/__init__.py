@@ -1,8 +1,6 @@
 from flask import Flask
 
-from flask_mail import Mail
-
-from datetime import datetime
+from app.emails.emails import mail
 
 from app.db.database import database
 
@@ -10,17 +8,13 @@ from app.index.views import index_bp
 
 from flask_wtf.csrf import CSRFProtect
 
-from app.emails.emails import send_email
+from datetime import datetime, timedelta
 
 from app.emails.models import Newsletter
 
+from app.emails.emails import send_email
+
 from apscheduler.schedulers.background import BackgroundScheduler
-
-app = Flask(__name__)
-
-mail = Mail(app)
-
-app.register_blueprint(index_bp)
 
 csrf = CSRFProtect()
 
@@ -28,16 +22,24 @@ scheduler = BackgroundScheduler()
 
 
 def create_app(config):
-    try:
-        csrf.init_app(app)
-        app.config.from_object(config)
-        database.create_tables([Newsletter])
-        scheduler.add_job(
-            send_email, "interval", minutes=1, next_run_time=datetime.now()
-        )
-        scheduler.start()
+    app = Flask(__name__)
 
-        return app
+    app.config.from_object(config)
 
-    except Exception as e:
-        return str(e)
+    mail.init_app(app)
+    csrf.init_app(app)
+    send_email()
+
+    app.register_blueprint(index_bp)
+
+    database.create_tables([Newsletter])
+
+    scheduler.add_job(
+        send_email,
+        "interval",
+        minutes=1,
+        next_run_time=datetime.now() + timedelta(seconds=10),
+    )
+    scheduler.start()
+
+    return app
