@@ -1,23 +1,21 @@
-from app import mail
+from flask_mail import Mail
+from flask_mail import Message
 
 from datetime import datetime
-
-from flask_mail import Message
+from app.emails.models import Newsletter
 
 from app.index.crypto_prices import CryptoPrice
 
 from concurrent.futures import ThreadPoolExecutor
 
+mail = Mail()
+
 current_date = datetime.now()
 
-emails = [
-    "georgepromotions@gmail.com",
-    "georgegarciacode@outlook.com",
-    "contacto@jorgegarciadev.com",
-]
+emails = [email.email for email in Newsletter.select()]
 
 message = (
-    "Los precio de las criptomonedas al día de hoy son:"
+    "Éstos son los precio de las criptomonedas al día de hoy - "
     + current_date.strftime("%d/%m/%Y")
     + " \n\n"
 )
@@ -29,7 +27,7 @@ for symbol, name, usd, mxn in zip(
     CryptoPrice().prices["mxn_price_list"],
 ):
     message += (
-        f"El precio de {symbol} {name} en USD es de: {usd} y en MXN es de: {mxn} \n"
+        f"El precio de {symbol} - {name} en USD es de: ${usd} y en MXN es de: ${mxn} \n"
     )
 
 
@@ -37,13 +35,9 @@ def send_email():
     try:
         with ThreadPoolExecutor(max_workers=2) as executor:
             for email in emails:
-                msg = Message(
-                    "Precios de cryptomonedas al día hoy", recipients=[email]
-                )
-                msg.body = "Contenido del correo"
+                msg = Message("Crypto Diary - Newsletter", recipients=[email])
+                msg.body = message
                 executor.submit(mail.send(msg))
-
-            return "Correo enviado"
 
     except Exception as e:
         return str(e)
