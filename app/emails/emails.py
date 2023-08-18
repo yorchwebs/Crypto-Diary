@@ -8,36 +8,38 @@ from app.index.crypto_prices import CryptoPrice
 
 from concurrent.futures import ThreadPoolExecutor
 
-mail = Mail()
 
-current_date = datetime.now()
+class SenderEmail:
+    def __init__(self):
+        self.mail = Mail()
+        self.current_date = datetime.now()
+        self.emails = [email.email for email in Newsletter.select()]
+        self.crypto_price = CryptoPrice()
 
-emails = [email.email for email in Newsletter.select()]
+    def generate_message(self):
+        message = (
+            "Éstos son los precio de las criptomonedas al día de hoy - "
+            + self.current_date.strftime("%d/%m/%Y")
+            + " \n\n"
+        )
 
-message = (
-    "Éstos son los precio de las criptomonedas al día de hoy - "
-    + current_date.strftime("%d/%m/%Y")
-    + " \n\n"
-)
+        for symbol, name, usd, mxn in zip(
+            self.crypto_price.prices["symbol_list"],
+            self.crypto_price.prices["name_list"],
+            self.crypto_price.prices["usd_price_list"],
+            self.crypto_price.prices["mxn_price_list"],
+        ):
+            message += f"El precio de {symbol} - {name} en USD es de: ${usd} y en MXN es de: ${mxn} \n"
 
-for symbol, name, usd, mxn in zip(
-    CryptoPrice().prices["symbol_list"],
-    CryptoPrice().prices["name_list"],
-    CryptoPrice().prices["usd_price_list"],
-    CryptoPrice().prices["mxn_price_list"],
-):
-    message += (
-        f"El precio de {symbol} - {name} en USD es de: ${usd} y en MXN es de: ${mxn} \n"
-    )
+        return message
 
+    def send_email(self):
+        try:
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                for email in self.emails:
+                    msg = Message("Crypto Diary - Newsletter", recipients=[email])
+                    msg.body = self.generate_message()
+                    executor.submit(self.mail.send(msg))
 
-def send_email():
-    try:
-        with ThreadPoolExecutor(max_workers=2) as executor:
-            for email in emails:
-                msg = Message("Crypto Diary - Newsletter", recipients=[email])
-                msg.body = message
-                executor.submit(mail.send(msg))
-
-    except Exception as e:
-        return str(e)
+        except Exception as e:
+            return str(e)
