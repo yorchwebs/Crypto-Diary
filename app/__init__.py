@@ -1,7 +1,5 @@
 from flask import Flask
 
-from app.emails.emails import mail
-
 from app.db.database import database
 
 from app.index.views import index_bp
@@ -12,11 +10,15 @@ from datetime import datetime, timedelta
 
 from app.emails.models import Newsletter
 
-from app.emails.emails import send_email
+from app.emails.emails import SenderEmail
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
 csrf = CSRFProtect()
+
+email = SenderEmail()
+
+send_mail = email.mail
 
 scheduler = BackgroundScheduler()
 
@@ -26,16 +28,16 @@ def create_app(config):
 
     app.config.from_object(config)
 
-    mail.init_app(app)
+    email.init_app(app)
     csrf.init_app(app)
-    send_email()
+    email.init_app(app)
 
     app.register_blueprint(index_bp)
 
     database.create_tables([Newsletter])
 
     scheduler.add_job(
-        send_email,
+        send_mail,
         "interval",
         minutes=1,
         next_run_time=datetime.now() + timedelta(seconds=10),
