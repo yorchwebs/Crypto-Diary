@@ -4,13 +4,13 @@ from flask import redirect
 from flask import Blueprint
 from flask import render_template
 
-from app.emails.models import Newsletter
+from app.index.models import Newsletter
 
 from app.index.forms import NewsletterForm
 
 from app.index.crypto_prices import CryptoPrice
 
-from app.emails.utils.pydantic_validator import NewsletterModel
+from app.index.utils.pydantic_validator import NewsletterModel
 
 
 index_bp = Blueprint(
