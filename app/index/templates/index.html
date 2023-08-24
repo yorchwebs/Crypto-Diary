@@ -246,10 +246,8 @@
         <h2>Suscribete y recibe actualizaciones <br>
             directo a tu correo.</h2>
         <form class="form" action="" method="POST">
+            {{ form.csrf_token }}
             {{ form.hidden_tag() }}
-            <div>
-                {{ form.name(size=64, placeholder="Nombre") }}<br>
-            </div>
             <div>
                 {{ form.email(size=64, placeholder="Email") }}<br>
             </div>
