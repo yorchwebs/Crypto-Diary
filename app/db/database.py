@@ -1,3 +1,5 @@
+""" Database connection module. """
+
 import peewee
 
 from decouple import config

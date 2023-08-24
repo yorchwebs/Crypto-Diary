@@ -11,5 +11,4 @@ class NewsletterModel(BaseModel):
         name (str): The name of the subscriber.
         email (str): The email address of the subscriber.
     """
-    name: str
     email: str

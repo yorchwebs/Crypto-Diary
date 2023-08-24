@@ -1,17 +1,15 @@
+""" This is the test file for the application. """
+
 import unittest
 
 from config import config
 
 from app import create_app
 
-from emails.emails import SenderEmail
-
-send_email = SenderEmail().email_body_and_connection
-
 
 class TestCryptoPrices(unittest.TestCase):
     def setUp(self):
-        environment = config["testing"]
+        environment: bool = config["testing"]
         self.app = create_app(environment)
         self.client = self.app.test_client()
 
@@ -21,6 +19,5 @@ class TestCryptoPrices(unittest.TestCase):
         pass
 
     def test_get_index_page(self):
-        response = self.client.get(path=self.path)
+        response: str = self.client.get(path=self.path)
         self.assertEqual(response.status_code, 200)
-

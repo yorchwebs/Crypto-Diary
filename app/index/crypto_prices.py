@@ -23,7 +23,7 @@ class CryptoPrice:
 
     Methods
     -------
-    __init__()
+    __init__() -> None:
         Initializes the CryptoPrice object and retrieves the current prices of popular
         cryptocurrencies.
     prices() -> dict:
@@ -94,11 +94,11 @@ class CryptoPrice:
             "Dogecoin",
         ]
         with ThreadPoolExecutor(max_workers=4) as executor:
-            usd_price_list = [
+            usd_price_list: List[float] = [
                 executor.submit(getting_price, self.coins[coin]["USD"]).result()
                 for coin in self.coins
             ]
-            mxn_price_list = [
+            mxn_price_list: List[float] = [
                 executor.submit(getting_price, self.coins[coin]["MXN"]).result()
                 for coin in self.coins
             ]

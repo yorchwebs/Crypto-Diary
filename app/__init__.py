@@ -1,19 +1,16 @@
 from flask import Flask
 
-from app.index.views import index_bp
+from datetime import datetime
 
 from emails.emails import SenderEmail
 
 from flask_wtf.csrf import CSRFProtect
 
-from app.index.models import Newsletter
-
-from datetime import datetime, timedelta
-
-from apscheduler.triggers.cron import CronTrigger
-
+from app.index.views import index_bp
+from app.index.models import NewsletterSubscriber
 from app.db.database import MySQLDatabaseSingleton
 
+from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
@@ -57,9 +54,9 @@ def create_app(config):
     app.register_blueprint(index_bp)
 
     with app.app_context():
-        database.create_tables([Newsletter], safe=True)
+        database.create_tables([NewsletterSubscriber], safe=True)
 
-    send_time = datetime.now() + timedelta(seconds=10)
+    send_time = datetime.now()
     scheduler.add_job(
         send_emails_job,
         CronTrigger(

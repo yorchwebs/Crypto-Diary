@@ -22,12 +22,23 @@ class DevelopmentConfig(Config):
         DEBUG (bool): Whether or not to enable debug mode.
     """
 
-    DEBUG = True
+    DEBUG: bool = True
+    
+class TestConfig(Config):
+    """
+    A configuration class for the Test application in development mode.
+
+    Attributes:
+        DEBUG (bool): Whether or not to enable debug mode.
+    """
+
+    DEBUG: bool = False
 
 
 config = {
     "development": DevelopmentConfig,
     "default": DevelopmentConfig,
+    "testing": TestConfig,
 }
 """
 A dictionary that maps configuration names to configuration classes.

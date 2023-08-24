@@ -10,7 +10,7 @@ from datetime import datetime
 
 from email.mime.text import MIMEText
 
-from app.index.models import Newsletter
+from app.index.models import NewsletterSubscriber
 
 from app.index.crypto_prices import CryptoPrice
 
@@ -71,8 +71,7 @@ class SenderEmail:
         None
         """
         self.current_date = datetime.now()
-        self.names = [name.name for name in Newsletter.select()]
-        self.emails = [email.email for email in Newsletter.select()]
+        self.emails = [email.email for email in NewsletterSubscriber.select()]
         self.crypto_price = CryptoPrice()
 
     def generate_message(self) -> str:

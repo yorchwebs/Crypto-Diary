@@ -18,7 +18,7 @@ class BaseModel(peewee.Model):
         database = database
 
 
-class Newsletter(BaseModel):
+class NewsletterSubscriber(BaseModel):
     """
     A base model class that all other models should inherit from.
 
@@ -27,8 +27,8 @@ class Newsletter(BaseModel):
         created_at (DateTimeField): The date and time when the model was created.
         updated_at (DateTimeField): The date and time when the model was last updated.
     """
-    name = peewee.CharField(max_length=255)
     email = peewee.CharField(max_length=255, unique=True)
+    created_at = peewee.DateTimeField(default=peewee.datetime.datetime.now)
 
     class Meta:
-        table_name = "subs"
+        table_name = "newsletter_subscribers"
