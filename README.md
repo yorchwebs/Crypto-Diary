@@ -3,22 +3,22 @@
 # PROJECT - CRYPTO DIARY
 
 This is a Crypto Aplication develop with Flask, HTML, CSS & JavaScript.
-Receives, processes, and displays the 10 coins data from CryptoCompare in Real-Time.
+Receives, processes, and displays the 10 coins data from CryptoCompare in Real-Time and
+send the prices to the user's email all mornings.
 
 ---
 
 * **Requirements for use this APP:**
-  * Only run with a Python 3.9 or down version (In a higher version, the app doesn't work for due to package incompatibility "Flask_Script")
 
   * Windows
   ```
-  Create Virtual Envorioment with the command: **python -m venv env**
-  Run the Virtual Envorioment with the command: **source \venv\Scripts\activate**
+  Create Virtual Envorioment with the command: python -m venv env
+  Run the Virtual Envorioment with the command: source \venv\Scripts\activate
   ```
   * Mac OS, Linux
   ```
-  Create Virtual Envorioment with the command: **python3 -m venv env**
-  Run the Virtual Envorioment with the command: **source env/bin/activate**
+  Create Virtual Envorioment with the command: python3 -m venv env
+  Run the Virtual Envorioment with the command: source env/bin/activate
   ```
   * Create the .env file with the Variable + API KEY => **CRYPTO_COMPARE_KEY=API KEY** and others variables if you need.
 ---
