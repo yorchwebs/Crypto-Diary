@@ -10,6 +10,8 @@ from app.index.models import Newsletter
 
 from datetime import datetime, timedelta
 
+from apscheduler.triggers.cron import CronTrigger
+
 from app.db.database import MySQLDatabaseSingleton
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -45,6 +47,9 @@ def create_app(config):
     Returns:
         The configured Flask application instance.
     """
+
+    time_of_send_email = "08:00"
+
     app.config.from_object(config)
 
     csrf.init_app(app)
@@ -57,10 +62,12 @@ def create_app(config):
     send_time = datetime.now() + timedelta(seconds=10)
     scheduler.add_job(
         send_emails_job,
-        "interval",
-        minutes=1,
-        start_date=send_time,
+        CronTrigger(
+            hour=time_of_send_email.split(":")[0],
+            minute=time_of_send_email.split(":")[1],
+        ),
         id="send_emails_job",
+        next_run_time=send_time,
     )
     scheduler.start()
 
