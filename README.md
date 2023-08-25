@@ -20,16 +20,21 @@ send the prices to the user's email all mornings.
   Create Virtual Envorioment with the command: python3 -m venv env
   Run the Virtual Envorioment with the command: source env/bin/activate
   ```
-  * Create the .env file with the Variable + API KEY => **CRYPTO_COMPARE_KEY=API KEY** and others variables if you need.
+
+---
+
+   * **You need to generate the API KEY on the CryptoCompare Official Site:**
+      * [www.cryptocompare.com](https://www.cryptocompare.com/)
+
+---
+
+  * Create the .env file with the API KEY variable => **CRYPTO_COMPARE_KEY=API KEY** and others variables
+  * (Database and smtp conection data and secret key)
+  
 ---
 
 * **Install Packages:**
   * pip install -r requirements.txt
-
----
-
-* **Additionally, you need to generate the API KEY on the CryptoCompare Official Site:**
-  * [www.cryptocompare.com](https://www.cryptocompare.com/)
 
 ---
 
