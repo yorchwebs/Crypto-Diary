@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 from app.index.crypto_prices import CryptoPrice
 from app.index.models import NewsletterSubscriber
 from app.index.forms import NewsletterSubscriberForm
-from app.index.utils.pydantic_validator import NewsletterModel
+from app.index.utils.pydantic_validator import NewsletterSubscriberValidateDataModel
 
 
 index_bp = Blueprint(
@@ -31,7 +31,7 @@ def index():
     """
     form = NewsletterSubscriberForm()
     if form.validate_on_submit():
-        validate_data = NewsletterModel(email=form.email.data)
+        validate_data = NewsletterSubscriberValidateDataModel(email=form.email.data)
         try:
             with ThreadPoolExecutor(max_workers=4) as executor:
                 new_subscriber = NewsletterSubscriber.create(
