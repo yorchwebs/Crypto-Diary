@@ -246,8 +246,16 @@
         <h2>Suscribete y recibe actualizaciones <br>
             directo a tu correo.</h2>
         <form class="form" action="" method="POST">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li class="flash-message {{ message[0] }}">{{ message[1] }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
             {{ form.csrf_token }}
-            {{ form.hidden_tag() }}
             <div>
                 {{ form.email(size=64, placeholder="Email") }}<br>
             </div>
