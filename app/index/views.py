@@ -3,8 +3,13 @@
 from flask import flash
 from flask import url_for
 from flask import redirect
+from flask import Response
 from flask import Blueprint
 from flask import render_template
+
+from typing import Type
+from typing import List
+from typing import Dict
 
 from flask_wtf.csrf import generate_csrf
 
@@ -22,31 +27,38 @@ index_bp = Blueprint(
 
 
 @index_bp.route("/", methods=["GET", "POST"])
-def index():
+def index() -> Response:
     """
     Renders the index page and handles the newsletter subscription form.
 
     Returns:
         A rendered HTML template with the index page and the crypto prices.
     """
-    form = NewsletterSubscriberForm()
+    form: Type[NewsletterSubscriberForm] = NewsletterSubscriberForm()
     if form.validate_on_submit():
-        validate_data = NewsletterSubscriberValidateDataModel(email=form.email.data)
+        validate_data: Type[
+            NewsletterSubscriberValidateDataModel
+        ] = NewsletterSubscriberValidateDataModel(email=form.email.data)
         try:
             with ThreadPoolExecutor(max_workers=4) as executor:
-                new_subscriber = NewsletterSubscriber.create(
-                    email=validate_data.email
-                )
+                new_subscriber: Type[
+                    NewsletterSubscriber
+                ] = NewsletterSubscriber.create(email=validate_data.email)
                 executor.submit(new_subscriber.save())
-                flash("Gracias por suscribirte !!")
+                flash(("success", "¡ Se ha registrado tu correo de forma exitosa !"))
             return redirect(url_for("index_bp.index"))
 
         except Exception:
-            flash("El email ya existe en la base de datos")
+            flash(
+                (
+                    "error",
+                    "El email ya existe en la base de datos, vuelve a intentarlo...",
+                )
+            )
             return redirect(url_for("index_bp.index"))
 
-    crypto_prices = CryptoPrice().prices
-    csrf_token = generate_csrf()
+    crypto_prices: List[Dict[str, str]] = CryptoPrice().prices
+    csrf_token: Type[str] = generate_csrf()
 
     return render_template(
         "index.html",
