@@ -171,6 +171,32 @@ input[type="email"] {
     background-color: #090909;
 }
 
+/* Flash Messages */
+
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.flashes li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.error {
+    width: 100%;
+    background-color: red;
+    color: white;
+}
+
+.success {
+    width: 100%;
+    background-color: green;
+    color: white;
+}
+
 /* Crypto */
 
 .actualizar {
