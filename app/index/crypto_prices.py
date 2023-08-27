@@ -103,7 +103,7 @@ class CryptoPrice:
                 for coin in self.coins
             ]
 
-        data_to_return = {
+        data_to_return: dict = {
             "symbol_list": SYMBOL_LIST,
             "name_list": NAME_LIST,
             "usd_price_list": usd_price_list,
