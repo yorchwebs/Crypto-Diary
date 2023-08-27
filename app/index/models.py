@@ -7,6 +7,7 @@ from app.db.database import MySQLDatabaseSingleton
 
 database = MySQLDatabaseSingleton().database
 
+
 class BaseModel(peewee.Model):
     """
     A base model class that all other models should inherit from.
@@ -14,6 +15,7 @@ class BaseModel(peewee.Model):
     Attributes:
         database (Database): The database connection to use for this model.
     """
+
     class Meta:
         database = database
 
@@ -27,7 +29,8 @@ class NewsletterSubscriber(BaseModel):
         created_at (DateTimeField): The date and time when the model was created.
         updated_at (DateTimeField): The date and time when the model was last updated.
     """
-    email = peewee.CharField(max_length=255, unique=True)
+
+    email: str = peewee.CharField(max_length=255, unique=True)
     created_at = peewee.DateTimeField(default=peewee.datetime.datetime.now)
 
     class Meta:
