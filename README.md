@@ -12,13 +12,13 @@ send the prices to the user's email all mornings.
 
   * Windows
   ```
-  Create Virtual Envorioment with the command: python -m venv env
-  Run the Virtual Envorioment with the command: source \venv\Scripts\activate
+  Create Virtual Environment with the command: python -m venv env
+  Run the Virtual Environment with the command: source \venv\Scripts\activate
   ```
   * Mac OS, Linux
   ```
-  Create Virtual Envorioment with the command: python3 -m venv env
-  Run the Virtual Envorioment with the command: source env/bin/activate
+  Create Virtual Environment with the command: python3 -m venv env
+  Run the Virtual Environment with the command: source env/bin/activate
   ```
 
 ---
