@@ -25,7 +25,6 @@ send the prices to the user's email all mornings.
 
    * **You need to generate the API KEY on the CryptoCompare Official Site:**
       * [www.cryptocompare.com](https://www.cryptocompare.com/)
-      * This is an API_KEY for testing: "cd6ecb9a24f2e657ada6f6738e0ac174b025dc4c1ee7ac05afe2f1df4c168d24"
 
 ---
 
