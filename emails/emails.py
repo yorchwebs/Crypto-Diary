@@ -18,15 +18,15 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class SenderEmail:
-    """
-    A class that sends a newsletter email with the current prices of popular
+    """A class that sends a newsletter email with the current prices of popular
     cryptocurrencies.
 
     This class retrieves the email addresses of the newsletter subscribers
-    from a database, and uses the `CryptoPrice` class to get the current prices of
-    popular cryptocurrencies in USD and MXN. It generates a message with the
-    current date and the prices of each cryptocurrency, and sends it to each subscriber
-    using the SMTP server and credentials specified in the configuration file.
+    from a database, and uses the `CryptoPrice` class to get the current
+    prices of popular cryptocurrencies in USD and MXN. It generates a
+    message with the current date and the prices of each cryptocurrency,
+    and sends it to each subscriber using the SMTP server and credentials
+    specified in the configuration file.
 
     Attributes
     ----------
@@ -37,52 +37,44 @@ class SenderEmail:
     emails : list
         A list of the email addresses of the newsletter subscribers.
     crypto_price : CryptoPrice
-        An instance of the `CryptoPrice` class used to retrieve the current prices of
-        popular cryptocurrencies.
+        An instance of the `CryptoPrice` class used to retrieve the
+        current prices of popular cryptocurrencies.
 
     Methods
     -------
     generate_message() -> str:
-        Generates a message with the current date and the prices of cryptocurrencies
-        in USD and MXN.
+        Generates a message with the current date and the prices of
+        cryptocurrencies in USD and MXN.
     email_body_and_connection(email: str) -> None:
-        Sends an email to the specified email address using the SMTP server and
-        credentials specified in the configuration file.
+        Sends an email to the specified email address using the SMTP server
+        and credentials specified in the configuration file.
     send_emails() -> None:
-        Sends emails to all recipients in the `emails` list using a thread pool.
+        Sends emails to all recipients in the `emails` list using a
+        thread pool.
     """
 
     def __init__(self) -> None:
-        """
-        Initializes a `SenderEmail` instance.
+        """Initializes a `SenderEmail` instance.
 
         This method initializes the `current_date` attribute with the current
-        date and time, retrieves the names and email addresses of the newsletter
-        subscribers from the database using the `Newsletter` model, and initializes an
-        instance of the `CryptoPrice` class to retrieve the current prices of popular
-        cryptocurrencies.
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        None
+        date and time, retrieves the names and email addresses of the
+        newsletter subscribers from the database using the `Newsletter` model,
+        and initializes an instance of the `CryptoPrice` class to retrieve
+        the current prices of popular cryptocurrencies.
         """
         self.current_date = datetime.now()
         self.emails = [email.email for email in NewsletterSubscriber.select()]
         self.crypto_price = CryptoPrice()
 
     def generate_message(self) -> str:
-        """
-        Generates a message with the current date and the prices of
+        """Generates a message with the current date and the prices of
         cryptocurrencies in USD and MXN.
 
         This method uses the `CryptoPrice` class to get the current prices of
         cryptocurrencies in USD and MXN. It then generates a message with the
-        current date and the prices of each cryptocurrency, formatted as follows:
-        "El precio de {symbol} - {coin_name} en USD es: ${usd} y en MXN es: ${mxn}"
+        current date and the prices of each cryptocurrency, formatted as
+        follows: "El precio de {symbol} - {coin_name} en USD es: ${usd}
+                    y en MXN es: ${mxn}"
 
         :args:
             None
@@ -93,7 +85,7 @@ class SenderEmail:
         :examples:
             >>> sender_email = SenderEmail()
             >>> sender_email.generate_message()
-            Éstos son los precio de las criptomonedas al día de hoy - 01/01/2021
+            Éstos son los precio de las criptomonedas al día de hoy-01/01/2021
         """
         message = (
             "Éstos son los precio de las criptomonedas al día de hoy - "
@@ -107,17 +99,17 @@ class SenderEmail:
             self.crypto_price.prices["usd_price_list"],
             self.crypto_price.prices["mxn_price_list"],
         ):
-            message += f"El precio de {symbol} - {coin_name} en USD es: ${usd} y en MXN es: ${mxn} \n"
+            message += f"El precio de {symbol} - {coin_name} en USD es: ${usd} y en MXN es: ${mxn} \n"  # noqa
 
         return message
 
     def email_body_and_connection(self, email: str) -> None:
-        """
-        Sends an email to the specified email address using the SMTP server
+        """Sends an email to the specified email address using the SMTP server
         and credentials specified in the configuration file.
 
         Args:
-            email: A string representing the email address to send the email to.
+            email: A string representing the email address to send the
+            email to.
 
         Returns:
             None.
@@ -149,17 +141,13 @@ class SenderEmail:
             logging.error(f"Error en el envío de correos: {str(e)}")
 
     def send_emails(self) -> None:
-        """
-        Sends emails to all recipients in the `emails` list using a thread pool.
+        """Sends emails to all recipients in the `emails` list using
+            a thread pool.
 
         This method uses a `ThreadPoolExecutor` to send emails concurrently,
         with a maximum of 4 worker threads.
-        Each email is sent by calling the `email_body_and_connection` method with the
-        corresponding email object as argument.
-
-        :args: None
-
-        :return: None
+        Each email is sent by calling the `email_body_and_connection` method
+        with the corresponding email object as argument.
         """
         with ThreadPoolExecutor(max_workers=4) as executor:
             for email in self.emails:

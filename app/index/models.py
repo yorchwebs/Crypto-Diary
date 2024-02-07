@@ -9,8 +9,7 @@ database = MySQLDatabaseSingleton().database
 
 
 class BaseModel(peewee.Model):
-    """
-    A base model class that all other models should inherit from.
+    """A base model class that all other models should inherit from.
 
     Attributes:
         database (Database): The database connection to use for this model.
@@ -21,13 +20,14 @@ class BaseModel(peewee.Model):
 
 
 class NewsletterSubscriber(BaseModel):
-    """
-    A base model class that all other models should inherit from.
+    """A base model class that all other models should inherit from.
 
     Attributes:
         id (AutoField): A unique identifier for the model.
-        created_at (DateTimeField): The date and time when the model was created.
-        updated_at (DateTimeField): The date and time when the model was last updated.
+        created_at (DateTimeField): The date and time when the model was
+                                    created.
+        updated_at (DateTimeField): The date and time when the model was
+                                    last updated.
     """
 
     email: str = peewee.CharField(max_length=255, unique=True)

@@ -1,0 +1,7 @@
+[flake8]
+max-line-length = 79
+exclude = migrations, env
+ignore = E203, W503
+import-order-dtyle = pep8
+# E203: Whitespace before ':' | not pep8 compatible
+# W503: Line break before binary operator | not pep8 compatible

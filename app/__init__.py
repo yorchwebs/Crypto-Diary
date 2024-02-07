@@ -23,8 +23,7 @@ database = MySQLDatabaseSingleton().database
 
 
 def send_emails_job():
-    """
-    A function that sends emails to all subscribers in the database.
+    """A function that sends emails to all subscribers in the database.
 
     Returns:
         None
@@ -34,8 +33,7 @@ def send_emails_job():
 
 
 def create_app(config):
-    """
-    Creates and configures the Flask application.
+    """Creates and configures the Flask application.
 
     Args:
         config (str): The name of the configuration class to use for the Flask

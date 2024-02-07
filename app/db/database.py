@@ -6,19 +6,18 @@ from decouple import config
 
 
 class MySQLDatabaseSingleton:
-    """
-    A singleton class for creating a MySQL database connection.
+    """A singleton class for creating a MySQL database connection.
 
     Attributes:
-        _instance (MySQLDatabaseSingleton): The singleton instance of the class.
+        _instance (MySQLDatabaseSingleton): The singleton instance of the
+                                            class.
         database (MySQLDatabase): The MySQL database connection object.
     """
     _instance = None
 
     def __new__(cls):
-        """
-        Creates a new instance of the class if it doesn't exist yet, or returns
-        the existing instance.
+        """Creates a new instance of the class if it doesn't exist yet,
+        or returns the existing instance.
 
         Returns:
             The singleton instance of the class.
@@ -29,9 +28,8 @@ class MySQLDatabaseSingleton:
         return cls._instance
 
     def init_db(self):
-        """
-        Initializes the MySQL database connection object using the configuration
-        settings.
+        """Initializes the MySQL database connection object using the
+        configuration settings.
         """
         self.database = peewee.MySQLDatabase(
             database=config("DB_MYSQL"),
