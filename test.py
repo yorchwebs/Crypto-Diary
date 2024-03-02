@@ -1,4 +1,4 @@
-""" This is the test file for the application. """
+"""This is the test file for the application."""
 
 import unittest
 

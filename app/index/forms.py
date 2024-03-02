@@ -1,4 +1,4 @@
-""" Forms for the index blueprint. """
+"""Forms for the index blueprint."""
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField

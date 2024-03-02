@@ -1,4 +1,4 @@
-""" Pydantic models for validating data. """
+"""Pydantic models for validating data."""
 
 from pydantic import BaseModel
 
@@ -9,4 +9,5 @@ class NewsletterSubscriberValidateDataModel(BaseModel):
     Attributes:
         email (str): The email address of the subscriber.
     """
+
     email: str

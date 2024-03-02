@@ -38,19 +38,21 @@ class CryptoPrice:
             A dictionary containing the current prices of popular
             cryptocurrencies in USD and MXN.
         """
+
         self.coins = cryptocompare.get_price(
-            ["BTC",
-             "ETH",
-             "USDT",
-             "USDC",
-             "BNB",
-             "XRP",
-             "BUSD",
-             "ADA",
-             "SOL",
-             "DOGE"],
-            ["USD",
-             "MXN"],
+            [
+                "BTC",
+                "ETH",
+                "USDT",
+                "USDC",
+                "BNB",
+                "XRP",
+                "BUSD",
+                "ADA",
+                "SOL",
+                "DOGE",
+            ],
+            ["USD", "MXN"],
         )
 
     @property
@@ -105,11 +107,15 @@ class CryptoPrice:
         ]
         with ThreadPoolExecutor(max_workers=4) as executor:
             usd_price_list: List[float] = [
-                executor.submit(getting_price, self.coins[coin]["USD"]).result()  # noqa
+                executor.submit(
+                    getting_price, self.coins[coin]["USD"]
+                ).result()  # noqa
                 for coin in self.coins
             ]
             mxn_price_list: List[float] = [
-                executor.submit(getting_price, self.coins[coin]["MXN"]).result()  # noqa
+                executor.submit(
+                    getting_price, self.coins[coin]["MXN"]
+                ).result()  # noqa
                 for coin in self.coins
             ]
 

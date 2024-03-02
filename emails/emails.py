@@ -1,4 +1,4 @@
-""" This is a docstring for the `SenderEmail`. """
+"""This is a docstring for the `SenderEmail`."""
 
 import smtplib
 

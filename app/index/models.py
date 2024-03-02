@@ -1,4 +1,4 @@
-""" This file contains the models for the index app. """
+"""This file contains the models for the index app."""
 
 import peewee
 

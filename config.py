@@ -23,7 +23,8 @@ class DevelopmentConfig(Config):
     """
 
     DEBUG: bool = True
-    
+
+
 class TestConfig(Config):
     """
     A configuration class for the Test application in development mode.

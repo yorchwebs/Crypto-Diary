@@ -15,10 +15,12 @@ def price_formatter(func) -> callable:
         A wrapper function that formats the price value returned by the
         decorated function.
     """
+
     def wrapper(*args, **kwargs):
         price: float = func(*args, **kwargs)
         price_formatter: float = "{:,.2f}".format(price)
         return price_formatter
+
     return wrapper
 
 

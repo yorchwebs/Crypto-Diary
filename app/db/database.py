@@ -1,4 +1,4 @@
-""" Database connection module. """
+"""Database connection module."""
 
 import peewee
 
@@ -13,6 +13,7 @@ class MySQLDatabaseSingleton:
                                             class.
         database (MySQLDatabase): The MySQL database connection object.
     """
+
     _instance = None
 
     def __new__(cls):

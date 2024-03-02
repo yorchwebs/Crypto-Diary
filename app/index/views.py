@@ -1,4 +1,4 @@
-""" Views for the index blueprint. """
+"""Views for the index blueprint."""
 
 from flask import flash
 from flask import url_for
@@ -35,14 +35,14 @@ def index() -> Response:
     """
     form: Type[NewsletterSubscriberForm] = NewsletterSubscriberForm()
     if form.validate_on_submit():
-        validate_data: Type[
-            NewsletterSubscriberValidateDataModel
-        ] = NewsletterSubscriberValidateDataModel(email=form.email.data)
+        validate_data: Type[NewsletterSubscriberValidateDataModel] = (
+            NewsletterSubscriberValidateDataModel(email=form.email.data)
+        )
         try:
             with ThreadPoolExecutor(max_workers=4) as executor:
-                new_subscriber: Type[
-                    NewsletterSubscriber
-                ] = NewsletterSubscriber.create(email=validate_data.email)
+                new_subscriber: Type[NewsletterSubscriber] = (
+                    NewsletterSubscriber.create(email=validate_data.email)
+                )
                 executor.submit(new_subscriber.save())
                 flash(("success", "¡ Se ha registrado tu correo de forma exitosa !"))  # noqa
             return redirect(url_for("index_bp.index"))
