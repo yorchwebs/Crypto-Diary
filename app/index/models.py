@@ -2,10 +2,10 @@
 
 import peewee
 
-from app.db.database import MySQLDatabaseSingleton
+from app.db.database import DatabaseSingleton
 
 
-database = MySQLDatabaseSingleton().database
+database = DatabaseSingleton().database
 
 
 class BaseModel(peewee.Model):

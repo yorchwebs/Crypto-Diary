@@ -54,7 +54,7 @@ html {
 /* Hero */
 
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://res.cloudinary.com/duckwaaai/image/upload/f_auto,q_auto/v1/Crypto-Diary/llmk18zoql5jqmuc4pzo);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(https://res.cloudinary.com/yorchwebs/image/upload/f_auto,q_auto/v1/Crypto-Diary/llmk18zoql5jqmuc4pzo);
     height: 768px;
     background-repeat: no-repeat;
     background-size: cover;

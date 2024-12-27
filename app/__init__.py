@@ -8,7 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 
 from app.index.views import index_bp
 from app.index.models import NewsletterSubscriber
-from app.db.database import MySQLDatabaseSingleton
+from app.db.database import DatabaseSingleton
 
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -19,7 +19,7 @@ csrf = CSRFProtect()
 
 scheduler = BackgroundScheduler()
 
-database = MySQLDatabaseSingleton().database
+database = DatabaseSingleton().database
 
 
 def send_emails_job():
