@@ -1,10 +1,9 @@
 """This is a docstring for the `CryptoPrice`."""
 
-import cryptocompare
-
+from concurrent.futures import ThreadPoolExecutor
 from typing import List
 
-from concurrent.futures import ThreadPoolExecutor
+import cryptocompare
 
 from app.index.utils.price_format import getting_price
 
@@ -107,15 +106,11 @@ class CryptoPrice:
         ]
         with ThreadPoolExecutor(max_workers=4) as executor:
             usd_price_list: List[float] = [
-                executor.submit(
-                    getting_price, self.coins[coin]["USD"]
-                ).result()  # noqa
+                executor.submit(getting_price, self.coins[coin]["USD"]).result()  # noqa
                 for coin in self.coins
             ]
             mxn_price_list: List[float] = [
-                executor.submit(
-                    getting_price, self.coins[coin]["MXN"]
-                ).result()  # noqa
+                executor.submit(getting_price, self.coins[coin]["MXN"]).result()  # noqa
                 for coin in self.coins
             ]
 

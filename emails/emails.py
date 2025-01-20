@@ -1,20 +1,15 @@
 """This is a docstring for the `SenderEmail`."""
 
-import smtplib
-
 import logging
+import smtplib
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
+from email.mime.text import MIMEText
 
 from decouple import config
 
-from datetime import datetime
-
-from email.mime.text import MIMEText
-
-from app.index.models import NewsletterSubscriber
-
 from app.index.crypto_prices import CryptoPrice
-
-from concurrent.futures import ThreadPoolExecutor
+from app.index.models import NewsletterSubscriber
 
 
 class SenderEmail:

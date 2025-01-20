@@ -4,7 +4,6 @@ import peewee
 
 from app.db.database import DatabaseSingleton
 
-
 database = DatabaseSingleton().database
 
 

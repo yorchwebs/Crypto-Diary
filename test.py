@@ -2,9 +2,8 @@
 
 import unittest
 
-from config import config
-
 from app import create_app
+from config import config
 
 
 class TestCryptoPrices(unittest.TestCase):

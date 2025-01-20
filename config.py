@@ -41,13 +41,3 @@ config = {
     "default": DevelopmentConfig,
     "testing": TestConfig,
 }
-"""
-A dictionary that maps configuration names to configuration classes.
-
-Attributes:
-    development (DevelopmentConfig): A configuration class for the Flask application in
-    development mode.
-    
-    default (DevelopmentConfig): The default configuration class for the Flask
-    application.
-"""
